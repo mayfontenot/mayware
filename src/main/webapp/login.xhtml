@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces">
+    <h:head>
+        <title>MAYWARE :: #{locale.LOGIN_TITLE}</title>
+        
+        <link rel="icon" type="image/png" href="#{resource['images/favicon.png']}"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+    </h:head>
+    
+    <h:body>
+        <p:growl id="id_growl" showDetail="true"/>
+        
+        <header>
+            <p:graphicImage library="images" name="banner.svg" alt="MAYWARE :: ${locale.SUBTITLE}"/>
+        </header>
+        
+        <nav>
+            <h:form>
+                <p:menuButton icon="pi pi-bars" value="" title="#{locale.MENU_TITLE}">
+                    <p:menuitem outcome="index.xhtml" fragment="projects" value="#{locale.PROJECTS_TITLE}" title="#{locale.PROJECTS_TITLE}"/>
+                    <p:menuitem outcome="index.xhtml" fragment="about" value="#{locale.ABOUT_TITLE}" title="#{locale.ABOUT_TITLE}"/>
+                    <p:menuitem outcome="index.xhtml" fragment="contact" value="#{locale.CONTACT_TITLE}" title="#{locale.CONTACT_TITLE}"/>
+                    <p:menuitem outcome="login.xhtml" value="#{locale.LOGIN_TITLE}" title="#{locale.LOGIN_TITLE}"/>
+                </p:menuButton>
+            </h:form>
+        </nav>
+        
+        <main>
+            <h:form>
+                <p:outputLabel for="@next" value="#{locale.FORM_USERNAME}"/>
+                <p:inputText value="#{sessionBean.username}" placeholder="#{locale.FORM_USERNAME}" title="#{locale.FORM_USERNAME}" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
+                <br/><br/>
+                <p:outputLabel for="@next" value="#{locale.FORM_PASSWORD}"/>
+                <p:password value="#{sessionBean.password}" placeholder="#{locale.FORM_PASSWORD}" title="#{locale.FORM_PASSWORD}" toggleMask="true" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
+                <br/><br/>
+                <p:commandButton value="#{locale.LOGIN_TITLE}" title="#{locale.LOGIN_TITLE}" action="#{sessionBean.login()}" update="id_growl @form"/>
+            </h:form>
+        </main>
+        
+        <footer>
+            #{locale.COPYRIGHT}
+        </footer>
+    </h:body>
+</html>

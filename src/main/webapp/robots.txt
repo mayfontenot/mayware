@@ -1,0 +1,13 @@
+User-agent: Googlebot
+Disallow:
+
+User-agent: AdsBot-Google
+Disallow:
+
+User-agent: Googlebot-Image
+Disallow:
+
+Sitemap: https://mayware.net/sitemap.xml
+Sitemap: https://www.mayware.net/sitemap.xml
+Sitemap: https://meiware.net/sitemap.xml
+Sitemap: https://www.meiware.net/sitemap.xml

@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>MAYWARE :: Admin Panel</title>
+        
+        <link rel="icon" type="image/png" href="#{resource['images/favicon.png']}"/>
+        <h:outputStylesheet library="css" name="tableStyle.css"/>
+    </h:head>
+    
+    <h:body>
+        <p:growl id="id_growl" showDetail="true"/>
+
+        <p:tabView rendered="#{sessionBean.loggedIn and sessionBean.level eq 3}">
+            <!-- Projects -->
+            <p:tab title="Projects">
+                <h:form>
+                    <p:remoteCommand name="updateDataTableProjects" update="id_dataTableProjects"/>
+
+                    <p:dataTable id="id_dataTableProjects" value="#{projectsBean.projects}" var="project" editable="true" paginator="true" paginatorPosition="bottom" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" currentPageReportTemplate="{startRecord} to {endRecord} of #{projectsBean.projects.size()}" rows="10">
+                        <p:ajax event="rowEdit" listener="#{projectsBean.onRowEdit}" update="id_growl id_dataTableProjects"/>
+
+                        <p:column title="Edit" toggleable="false" styleClass="editColumn">
+                            <p:rowEditor styleClass="rowEditor"/>
+                        </p:column>
+
+                        <p:column title="Delete" styleClass="deleteColumn">
+                            <p:commandButton value="" styleClass="ui-button-raised ui-button-danger customCursor inlineButton" icon="pi pi-trash" action="#{projectsBean.delete(project)}" update="id_growl id_dataTableProjects"/>
+                        </p:column>
+
+                        <p:column headerText="project_name" title="Sort" sortBy="#{project.projectName}" filterBy="#{project.projectName}" filterMatchMode="startsWith" filterPlaceholder="Search">
+                            <p:outputLabel value="#{project.projectName}"/>
+                        </p:column>
+
+                        <p:column headerText="description" title="Sort" sortBy="#{project.description}" filterBy="#{project.description}" filterMatchMode="contains" filterPlaceholder="Search">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <p:outputLabel value="#{project.description}"/>
+                                </f:facet>
+
+                                <f:facet name="input">
+                                    <p:inputTextarea value="#{project.description}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="Description is required"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h:form>
+                    <p:inplace editor="true" styleClass="inPlace">
+                        <f:facet name="output">
+                            <p:outputLabel value="Insert " title="Insert"/>
+                            <h:outputText value="" styleClass="ui-button-raised pi pi-plus-circle inlineButton" title="Insert"/>
+                        </f:facet>
+
+                        <f:facet name="input">
+                            <p:inputText value="#{projectsBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="Project name is required"/>
+
+                            <p:inputTextarea value="#{projectsBean.newDescription}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="Description is required"/>
+                        </f:facet>
+
+                        <p:ajax event="save" listener="#{projectsBean.insert}" oncomplete="updateDataTableProjects()" update="id_growl"/>
+                        <p:ajax event="cancel" listener="#{projectsBean.cancelInsert}"/>
+                    </p:inplace>
+                </h:form>
+            </p:tab>
+            
+            <!-- Frameworks -->
+            <p:tab title="Frameworks">
+                <h:form>
+                    <p:remoteCommand name="updateDataTableFrameworks" update="id_dataTableFrameworks"/>
+
+                    <p:dataTable id="id_dataTableFrameworks" value="#{frameworksBean.frameworks}" var="framework" editable="true" paginator="true" paginatorPosition="bottom" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" currentPageReportTemplate="{startRecord} to {endRecord} of #{frameworksBean.frameworks.size()}" rows="10">
+                        <p:ajax event="rowEdit" listener="#{frameworksBean.onRowEdit}" update="id_growl id_dataTableFrameworks"/>
+
+                        <p:column title="Edit" toggleable="false" styleClass="editColumn">
+                            <p:rowEditor styleClass="rowEditor"/>
+                        </p:column>
+
+                        <p:column title="Delete" styleClass="deleteColumn">
+                            <p:commandButton value="" styleClass="ui-button-raised ui-button-danger customCursor inlineButton" icon="pi pi-trash" action="#{frameworksBean.delete(framework)}" update="id_growl id_dataTableFrameworks"/>
+                        </p:column>
+
+                        <p:column headerText="project_name" title="Sort" sortBy="#{framework.projectName.projectName}" filterBy="#{framework.projectName.projectName}" filterMatchMode="startsWith" filterPlaceholder="Search">
+                            <p:outputLabel value="#{framework.projectName.projectName}"/>
+                        </p:column>
+
+                        <p:column headerText="framework_name" title="Sort" sortBy="#{framework.frameworkName}" filterBy="#{framework.frameworkName}" filterMatchMode="contains" filterPlaceholder="Search">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <p:outputLabel value="#{framework.frameworkName}"/>
+                                </f:facet>
+
+                                <f:facet name="input">
+                                    <p:inputTextarea value="#{framework.frameworkName}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="Description is required"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h:form>
+                    <p:inplace editor="true" styleClass="inPlace">
+                        <f:facet name="output">
+                            <p:outputLabel value="Insert " title="Insert"/>
+                            <h:outputText value="" styleClass="ui-button-raised pi pi-plus-circle inlineButton" title="Insert"/>
+                        </f:facet>
+
+                        <f:facet name="input">
+                            <p:inputText value="#{frameworksBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="Project name is required"/>
+
+                            <p:inputTextarea value="#{frameworksBean.newFrameworkName}" placeholder="Framework name" title="Framework name" maxlength="1024" required="true" requiredMessage="Framework name is required"/>
+                        </f:facet>
+
+                        <p:ajax event="save" listener="#{frameworksBean.insert}" oncomplete="updateDataTableFrameworks()" update="id_growl"/>
+                        <p:ajax event="cancel" listener="#{frameworksBean.cancelInsert}"/>
+                    </p:inplace>
+                </h:form>
+            </p:tab>
+            
+            <!-- Images -->
+            <p:tab title="Images">
+                <h:form>
+                    <p:remoteCommand name="updateDataTableImages" update="id_dataTableImages"/>
+
+                    <p:dataTable id="id_dataTableImages" value="#{imagesBean.images}" var="image" editable="true" paginator="true" paginatorPosition="bottom" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" currentPageReportTemplate="{startRecord} to {endRecord} of #{imagesBean.images.size()}" rows="10">
+                        <p:ajax event="rowEdit" listener="#{imagesBean.onRowEdit}" update="id_growl id_dataTableImages"/>
+
+                        <p:column title="Delete" styleClass="deleteColumn">
+                            <p:commandButton value="" styleClass="ui-button-raised ui-button-danger customCursor inlineButton" icon="pi pi-trash" action="#{imagesBean.delete(image)}" update="id_growl id_dataTableImages"/>
+                        </p:column>
+
+                        <p:column headerText="project_name" title="Sort" sortBy="#{image.projectName.projectName}" filterBy="#{image.projectName.projectName}" filterMatchMode="startsWith" filterPlaceholder="Search">
+                            <p:outputLabel value="#{image.projectName.projectName}"/>
+                        </p:column>
+
+                        <p:column headerText="image">
+                            <p:graphicImage value="#{imagesBean.getStreamedContent(image.image)}" stream="false" style="height: 6em;"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h:form enctype="multipart/form-data">
+                    <p:inplace editor="true" styleClass="inPlace">
+                        <f:facet name="output">
+                            <p:outputLabel value="Insert " title="Insert"/>
+                            <h:outputText value="" styleClass="ui-button-raised pi pi-plus-circle inlineButton" title="Insert"/>
+                        </f:facet>
+
+                        <f:facet name="input">
+                            <p:inputText value="#{imagesBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="Project name is required"/>
+
+                            <p:fileUpload id="id_fileUploadImages" value="#{imagesBean.newImage}" mode="simple" skinSimple="true" title="Image" required="true" requiredMessage="Image is required"/>
+                        </f:facet>
+
+                        <p:ajax event="save" process="@form id_fileUploadImages" listener="#{imagesBean.insert}" oncomplete="updateDataTableImages()" update="id_growl"/>
+                        <p:ajax event="cancel" listener="#{imagesBean.cancelInsert}"/>
+                    </p:inplace>
+                </h:form>
+            </p:tab>
+        </p:tabView>
+    </h:body>
+</html>

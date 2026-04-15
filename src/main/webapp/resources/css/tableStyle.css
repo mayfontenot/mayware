@@ -1,0 +1,27 @@
+.inlineButton {
+    margin-top: 2px !important;
+    vertical-align: top !important;
+    width: 33px !important;
+    height: 33px !important;
+}
+
+.editColumn {
+    width: 80px !important;
+}
+
+.deleteColumn {
+    width: 40px !important;
+}
+
+.rowEditor {
+    vertical-align: middle !important;
+}
+
+.inPlace {
+    float: right !important;
+    display: flex !important;
+    text-align: center !important;
+    border-radius: 10px !important;
+    background-color: #2196F3 !important;
+    color: white !important;
+}

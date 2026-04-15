@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:ui="jakarta.faces.facelets">
+    <h:head>
+        <title>MAYWARE :: #{locale.SUBTITLE}</title>
+        
+        <meta name="title" content="MAYWARE :: #{locale.SUBTITLE}"/>
+        <meta name="description" content="#{locale.DESCRIPTION}"/>
+        <meta name="keywords" content="mayware, mayware.net, mayware lafayette, software engineering, software consult, software consulting, software consultation, web design, web designer, web design consult, web design consulting, web design consultation, affordable software engineering, affordable software consult, affordable software consulting, affordable software consultation, affordable web design, affordable web designer, affordable web design consult, affordable web design consulting, affordable web design consultation, lafayette software engineering, lafayette software consult, lafayette software consulting, lafayette software consultation, lafayette web design, lafayette web designer, lafayette web design consult, lafayette web design consulting, lafayette web design consultation, software engineering lafayette, software consult lafayette, software consulting lafayette, software consultation lafayette, web design lafayette, web designer lafayette, web design consult lafayette, web design consulting lafayette, web design consultation lafayette"/>
+        <meta name="geo.region" content="US-LA"/>
+        <meta name="geo.placename" content="Lafayette"/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://mayware.net/"/>
+        <meta property="og:title" content="MAYWARE :: #{locale.SUBTITLE}"/>
+        <meta property="og:description" content="#{locale.DESCRIPTION}"/>
+        <meta property="og:image" content="https://mayware.net#{resource['images/banner.png']}"/>
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content="https://mayware.net/"/>
+        <meta property="twitter:title" content="MAYWARE :: #{locale.SUBTITLE}"/>
+        <meta property="twitter:description" content="#{locale.DESCRIPTION}"/>
+        <meta property="twitter:image" content="https://mayware.net#{resource['images/banner.png']}"/>
+
+        <meta charset="UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow"/>
+        <meta name="language" content="English"/>
+
+        <link rel="icon" type="image/png" href="#{resource['images/favicon.png']}"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+    </h:head>
+    
+    <h:body>
+        <p:growl id="id_growl" showDetail="true"/>
+        
+        <header>
+            <p:graphicImage library="images" name="banner.svg" alt="MAYWARE :: ${locale.SUBTITLE}"/>
+        </header>
+        
+        <nav>
+            <h:form>
+                <p:menuButton icon="pi pi-bars" value="" title="#{locale.MENU_TITLE}">
+                    <p:menuitem outcome="index.xhtml" fragment="projects" value="#{locale.PROJECTS_TITLE}" title="#{locale.PROJECTS_TITLE}"/>
+                    <p:menuitem outcome="index.xhtml" fragment="about" value="#{locale.ABOUT_TITLE}" title="#{locale.ABOUT_TITLE}"/>
+                    <p:menuitem outcome="index.xhtml" fragment="contact" value="#{locale.CONTACT_TITLE}" title="#{locale.CONTACT_TITLE}"/>
+                    <p:menuitem outcome="login.xhtml" value="#{locale.LOGIN_TITLE}" title="#{locale.LOGIN_TITLE}"/>
+                </p:menuButton>
+            </h:form>
+        </nav>
+        
+        <main>
+            <h1>#{locale.DESCRIPTION}</h1>
+            
+            <section id="projects">
+                <h2>#{locale.PROJECTS_TITLE}</h2>
+                
+                <ul>
+                    <ui:repeat value="#{projectsBean.projects}" var="project">
+                        <li>
+                            <h3>#{project.projectName}</h3>
+                            <p>#{project.description}</p>
+                            <h:outputLink value="https://github.com/mayfontenot/#{project.projectName}">GitHub</h:outputLink>
+                            <h:outputLink value="./#{project.projectName}">#{locale.URL_LIVE_DEMO}</h:outputLink>
+                            
+                            <ul>
+                                <ui:repeat value="#{project.frameworksCollection}" var="framework">
+                                    <li>#{framework.frameworkName}</li>
+                                </ui:repeat>
+                            </ul>
+                            
+                            <p:galleria value="#{project.imagesCollection}" var="image" varStatus="status" numVisible="#{project.imagesCollection.size()}" showItemNavigators="true" circular="true" autoPlay="true" transitionInterval="4000" showItemNavigatorsOnHover="true" showThumbnails="false" showIndicators="true" style="margin-top: 0.5em; max-width: 48em;">
+                                <p:graphicImage value="#{imagesBean.getStreamedContent(image.image)}" stream="false" alt="#{status.index}" style="width: 100%; display: block;"/>
+                            </p:galleria>
+                        </li>
+                    </ui:repeat>
+                </ul>
+            </section>
+            
+            <section id="about">
+                <h2>#{locale.ABOUT_TITLE}</h2>
+                <p>#{locale.ABOUT_DESCRIPTION}</p>
+            </section>
+            
+            <section id="contact">
+                <h2>#{locale.CONTACT_TITLE}</h2>
+                
+                <h:outputLink value="mailto:may@mayware.net">may@mayware.net</h:outputLink>
+            </section>
+        </main>
+        
+        <footer>
+            #{locale.COPYRIGHT}
+        </footer>
+    </h:body>
+</html>
