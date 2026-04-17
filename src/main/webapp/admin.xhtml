@@ -42,7 +42,7 @@
                                 </f:facet>
 
                                 <f:facet name="input">
-                                    <p:inputTextarea value="#{project.description}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="Description is required"/>
+                                    <p:inputTextarea value="#{project.description}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -57,9 +57,9 @@
                         </f:facet>
 
                         <f:facet name="input">
-                            <p:inputText value="#{projectsBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="Project name is required"/>
+                            <p:inputText value="#{projectsBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
 
-                            <p:inputTextarea value="#{projectsBean.newDescription}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="Description is required"/>
+                            <p:inputTextarea value="#{projectsBean.newDescription}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
                         </f:facet>
 
                         <p:ajax event="save" listener="#{projectsBean.insert}" oncomplete="updateDataTableProjects()" update="id_growl"/>
@@ -95,7 +95,7 @@
                                 </f:facet>
 
                                 <f:facet name="input">
-                                    <p:inputTextarea value="#{framework.frameworkName}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="Description is required"/>
+                                    <p:inputTextarea value="#{framework.frameworkName}" placeholder="Description" title="Description" maxlength="1024" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -110,9 +110,16 @@
                         </f:facet>
 
                         <f:facet name="input">
-                            <p:inputText value="#{frameworksBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="Project name is required"/>
+                            <p:selectOneMenu value="#{frameworksBean.newProjectName}" filter="true" filterMatchMode="startsWith" filterNormalize="true" title="Project name" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}">
+                                <f:selectItems value="#{projectsBean.projects}" var="p" itemValue="#{p.projectName}" itemLabel="#{p.projectName}"/>
+                                
+                                <f:facet name="footer">
+                                    <p:divider styleClass="mt-0"/>
+                                    <h:outputText escape="false" value="#{projectsBean.projects.size()} options" style="font-weight:bold;"/>
+                                </f:facet>
+                            </p:selectOneMenu>
 
-                            <p:inputTextarea value="#{frameworksBean.newFrameworkName}" placeholder="Framework name" title="Framework name" maxlength="1024" required="true" requiredMessage="Framework name is required"/>
+                            <p:inputTextarea value="#{frameworksBean.newFrameworkName}" placeholder="Framework name" title="Framework name" maxlength="1024" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
                         </f:facet>
 
                         <p:ajax event="save" listener="#{frameworksBean.insert}" oncomplete="updateDataTableFrameworks()" update="id_growl"/>
@@ -151,9 +158,16 @@
                         </f:facet>
 
                         <f:facet name="input">
-                            <p:inputText value="#{imagesBean.newProjectName}" placeholder="Project name" title="Project name" maxlength="32" required="true" requiredMessage="Project name is required"/>
+                            <p:selectOneMenu value="#{imagesBean.newProjectName}" filter="true" filterMatchMode="startsWith" filterNormalize="true" title="Project name" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}">
+                                <f:selectItems value="#{projectsBean.projects}" var="p" itemValue="#{p.projectName}" itemLabel="#{p.projectName}"/>
+                                
+                                <f:facet name="footer">
+                                    <p:divider styleClass="mt-0"/>
+                                    <h:outputText escape="false" value="#{projectsBean.projects.size()} options" style="font-weight:bold;"/>
+                                </f:facet>
+                            </p:selectOneMenu>
 
-                            <p:fileUpload id="id_fileUploadImages" value="#{imagesBean.newImage}" mode="simple" skinSimple="true" title="Image" required="true" requiredMessage="Image is required"/>
+                            <p:fileUpload id="id_fileUploadImages" value="#{imagesBean.newImage}" mode="simple" skinSimple="true" title="Image" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
                         </f:facet>
 
                         <p:ajax event="save" process="@form id_fileUploadImages" listener="#{imagesBean.insert}" oncomplete="updateDataTableImages()" update="id_growl"/>
