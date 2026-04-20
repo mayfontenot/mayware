@@ -33,14 +33,22 @@
         </nav>
         
         <main>
-            <h:form>
-                <p:outputLabel for="@next" value="#{locale.FORM_USERNAME}"/>
-                <p:inputText value="#{sessionBean.username}" placeholder="#{locale.FORM_USERNAME}" title="#{locale.FORM_USERNAME}" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
-                <br/><br/>
-                <p:outputLabel for="@next" value="#{locale.FORM_PASSWORD}"/>
-                <p:password value="#{sessionBean.password}" placeholder="#{locale.FORM_PASSWORD}" title="#{locale.FORM_PASSWORD}" toggleMask="true" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
-                <br/><br/>
-                <p:commandButton value="#{locale.LOGIN_TITLE}" title="#{locale.LOGIN_TITLE}" action="#{sessionBean.login()}" update="id_growl @form"/>
+            <h:form styleClass="loginForm">
+                <p:panelGrid columns="1">
+                    <p:column>
+                        <p:outputLabel for="@next" value="#{locale.FORM_USERNAME}"/>
+                        <p:inputText value="#{sessionBean.username}" placeholder="#{locale.FORM_USERNAME}" title="#{locale.FORM_USERNAME}" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel for="@next" value="#{locale.FORM_PASSWORD}"/>
+                        <p:password value="#{sessionBean.password}" placeholder="#{locale.FORM_PASSWORD}" title="#{locale.FORM_PASSWORD}" toggleMask="true" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
+                    </p:column>
+
+                    <p:column styleClass="loginButtonColumn">
+                        <p:commandButton value="#{locale.LOGIN_TITLE}" title="#{locale.LOGIN_TITLE}" action="#{sessionBean.login()}" update="id_growl @form"/>
+                    </p:column>
+                </p:panelGrid>
             </h:form>
         </main>
         

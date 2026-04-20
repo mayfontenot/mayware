@@ -49,10 +49,6 @@ main {
     overflow: auto;
 }
 
-main a {
-    margin-right: 1em;
-}
-
 a:link, a:hover, a:active, a:visited {
     text-decoration: none;
     color: lightblue;
@@ -71,4 +67,18 @@ footer {
 body nav form .ui-button {
     background: none !important;
     border: none !important;
+}
+
+.ui-panelgrid-cell {
+    background-color: transparent !important;
+}
+
+.loginForm {
+    margin: 0 auto;
+    width: fit-content;
+    background-color: #252525;
+}
+
+.loginButtonColumn {
+    margin: 0 auto;
 }

@@ -4,7 +4,7 @@
       xmlns:h="jakarta.faces.html"
       xmlns:p="primefaces"
       xmlns:f="jakarta.faces.core">
-    <h:head>
+    <h:head rendered="#{sessionBean.loggedIn and sessionBean.level eq 3}">
         <title>MAYWARE :: Admin Panel</title>
         
         <meta charset="UTF-8"/>
@@ -14,10 +14,10 @@
         <h:outputStylesheet library="css" name="tableStyle.css"/>
     </h:head>
     
-    <h:body>
+    <h:body rendered="#{sessionBean.loggedIn and sessionBean.level eq 3}">
         <p:growl id="id_growl" showDetail="true"/>
 
-        <p:tabView rendered="#{sessionBean.loggedIn and sessionBean.level eq 3}">
+        <p:tabView>
             <!-- Projects -->
             <p:tab title="Projects">
                 <h:form>

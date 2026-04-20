@@ -7,6 +7,7 @@ import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.util.HexFormat;
@@ -62,7 +63,10 @@ public class SessionBean implements Serializable {
         return level;
     }
     
-    public boolean isLoggedIn() {
+    public boolean isLoggedIn() throws IOException {
+        if (!loggedIn || level != 3)
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+        
         return loggedIn;
     }
 }

@@ -30,7 +30,6 @@ public class FrameworksBean implements Serializable {
     
     public void insert() {
         try {
-            
             Frameworks f = new Frameworks(0, newFrameworkName);
             f.setProjectName(projectsFL.find(newProjectName));
             
