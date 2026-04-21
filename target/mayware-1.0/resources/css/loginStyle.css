@@ -8,6 +8,14 @@
     border-radius: 1em;
 }
 
+.loginLabel {
+    display: block;
+}
+
+.loginInputField {
+    width: 100%;
+}
+
 .loginButtonColumn {
     margin: 0 auto;
 }

@@ -42,13 +42,13 @@
                     </f:facet>
                     
                     <p:column>
-                        <p:outputLabel for="@next" value="#{locale.FORM_USERNAME}"/>
-                        <p:inputText value="#{sessionBean.username}" placeholder="#{locale.FORM_USERNAME}" title="#{locale.FORM_USERNAME}" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
+                        <p:outputLabel for="@next" value="#{locale.FORM_USERNAME}" styleClass="loginLabel"/>
+                        <p:inputText value="#{sessionBean.username}" placeholder="#{locale.FORM_USERNAME}" title="#{locale.FORM_USERNAME}" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}" styleClass="loginInputField"/>
                     </p:column>
 
                     <p:column>
-                        <p:outputLabel for="@next" value="#{locale.FORM_PASSWORD}"/>
-                        <p:password value="#{sessionBean.password}" placeholder="#{locale.FORM_PASSWORD}" title="#{locale.FORM_PASSWORD}" toggleMask="true" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>
+                        <p:outputLabel for="@next" value="#{locale.FORM_PASSWORD}" styleClass="loginLabel"/>
+                        <p:password value="#{sessionBean.password}" placeholder="#{locale.FORM_PASSWORD}" title="#{locale.FORM_PASSWORD}" toggleMask="true" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}" styleClass="loginInputField"/>
                     </p:column>
 
                     <p:column styleClass="loginButtonColumn">
