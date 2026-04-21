@@ -1,0 +1,17 @@
+.loginForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: fit-content;
+    background-color: #252525;
+    border-radius: 1em;
+}
+
+.loginButtonColumn {
+    margin: 0 auto;
+}
+
+.ui-panelgrid-cell {
+    background-color: transparent !important; /* without this, the panelgrid has a white background */
+}

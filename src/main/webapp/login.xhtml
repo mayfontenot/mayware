@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:p="primefaces">
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
     <h:head>
         <title>MAYWARE :: #{locale.LOGIN_TITLE}</title>
 
@@ -11,6 +12,7 @@
         
         <link rel="icon" type="image/png" href="#{resource['images/favicon.png']}"/>
         <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="loginStyle.css"/>
     </h:head>
     
     <h:body>
@@ -35,6 +37,10 @@
         <main>
             <h:form styleClass="loginForm">
                 <p:panelGrid columns="1">
+                    <f:facet name="header">
+                        #{locale.LOGIN_TITLE}
+                    </f:facet>
+                    
                     <p:column>
                         <p:outputLabel for="@next" value="#{locale.FORM_USERNAME}"/>
                         <p:inputText value="#{sessionBean.username}" placeholder="#{locale.FORM_USERNAME}" title="#{locale.FORM_USERNAME}" required="true" requiredMessage="#{locale.FORM_REQUIREDMSG}"/>

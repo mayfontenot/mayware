@@ -8,6 +8,7 @@
 
 body {
     background-color: #303030;
+    margin-bottom: 1.75em; /*this is the length of the footer, so our footer doesn't display on top*/
 }
 
 header {
@@ -28,16 +29,9 @@ nav {
     left: 0.5em;
 }
 
-h2 {
-    margin-top: 1em;
-}
-
-p {
-    text-indent: 2em;
-}
-
-ul {
-    margin-left: 2em;
+body nav form .ui-button { /* this removes the background and border of the hamburger button */
+    background: none !important;
+    border: none !important;
 }
 
 main {
@@ -49,13 +43,9 @@ main {
     overflow: auto;
 }
 
-a:link, a:hover, a:active, a:visited {
-    text-decoration: none;
-    color: lightblue;
-}
-
 footer {
-    margin-top: 0.5em;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     background-color: #252525;
     
@@ -64,21 +54,19 @@ footer {
     font-size: 0.75em;
 }
 
-body nav form .ui-button {
-    background: none !important;
-    border: none !important;
+a:link, a:hover, a:active, a:visited {
+    text-decoration: none;
+    color: lightblue;
 }
 
-.ui-panelgrid-cell {
-    background-color: transparent !important;
+h2 {
+    margin-top: 1em;
 }
 
-.loginForm {
-    margin: 0 auto;
-    width: fit-content;
-    background-color: #252525;
+p {
+    text-indent: 2em;
 }
 
-.loginButtonColumn {
-    margin: 0 auto;
+ul {
+    margin-left: 2em;
 }
