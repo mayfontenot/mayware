@@ -1,5 +1,5 @@
 # About mayware
-May's Software is a portfolio site featuring dynamically-populated projects via an administration system. Utilizes Jakarta EE, Jakarta Faces, Prime Faces, Pretty Faces, Enterprise Java Beans, CDI beans, Database Entities, MySQL, Internationalization & Localization, Secure Hashing Algorithm
+May's Software is a portfolio site featuring dynamically-populated projects via an administration system. Utilizes Jakarta EE, Jakarta Faces, Prime Faces, Pretty Faces, Enterprise Java Beans, CDI beans, Database Entities, MySQL, Internationalization & Localization, Templating, Secure Hashing Algorithm
 
 ![Home1](screenshots/home1.png)
 ![Home2](screenshots/home2.png)
